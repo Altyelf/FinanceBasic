@@ -5,7 +5,6 @@ const Calculator = () => {
    return (
       <div>
          <Form />
-         <h1 className="heading">Rezultāts</h1>
       </div>
    )
 }

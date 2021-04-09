@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import calculateResults from '../../utils/funcion'
 
 const Form = () => {
     const [userValues, setUserValues] = useState({ name: '', amount: '', date: '', interest: '' });
@@ -11,26 +12,6 @@ const Form = () => {
     const handleSubmitValues = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         calculateResults(userValues);
-    };
-
-    const calculateResults = ({ amount, date, interest }: any) => {
-        const userAmount = Number(amount);
-        const calculatedInterest = Number(interest) / 100 / 12;
-        const calculatedPayments = Number(date) * 12;
-        const x = Math.pow(1 + calculatedInterest, calculatedPayments);
-        const monthly = (userAmount * x * calculatedInterest) / (x - 1);
-
-        if (isFinite(monthly)) {
-            const monthlyPaymentCalculated = monthly.toFixed(2);
-            const totalInterestCalculated = (monthly * calculatedPayments - userAmount).toFixed(2);
-
-            setResults({
-                monthlyPayment: monthlyPaymentCalculated,
-                totalInterest: totalInterestCalculated,
-                isResult: true,
-            });
-        }
-        return;
     };
 
     return (
